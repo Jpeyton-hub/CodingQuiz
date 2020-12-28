@@ -1,0 +1,17 @@
+/* Global Styles */
+
+.container {
+    margin: 2rem;
+}
+
+/* quizDiv */
+
+#quizDiv {
+    margin: 4rem;
+}
+
+/* answerDiv */
+
+#answerDiv {
+    margin-top: 2rem;
+}
