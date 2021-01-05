@@ -13,7 +13,7 @@
   <body>
      <header class="container">
          <h1 class="text-center">Code Review Quiz</h1>
-         <h5 class="text-right">Time Remaining: <span>00</span></h5>
+         <h5 class="text-right">Time Remaining: <span id="timer">00</span></h5>
      </header>
      <div id="quizDiv" class="container">
          <div class="row">
@@ -29,11 +29,11 @@
             <div class="col-md-3">  
             </div>
             <div id="answerDiv" class="col-md-6">
-                <ol>
-                    <li id="answer1" class="a1">&lt;div&gt;</li>
-                    <li id="answer2" class="b1">&lt;header&gt;</li>
-                    <li id="answer3" class="c1">&lt;body&gt;</li>
-                    <li id="answer4" class="d1">&lt;br&gt;</li>
+                <ol id="ansDivList">
+                    <li id="answer1" class="a1 wrong">&lt;div&gt;</li>
+                    <li id="answer2" class="b1 right">&lt;header&gt;</li>
+                    <li id="answer3" class="c1 wrong">&lt;body&gt;</li>
+                    <li id="answer4" class="d1 wrong">&lt;br&gt;</li>
                 </ol>  
             </div>
             <div class="col-md-3">  
