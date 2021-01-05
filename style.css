@@ -4,6 +4,13 @@
     margin: 2rem;
 }
 
+/* header */
+
+header {
+    background-color: rgb(130, 130, 240);
+    border-bottom: solid 3px coral; 
+}
+
 /* quizDiv */
 
 #quizDiv {
@@ -14,4 +21,12 @@
 
 #answerDiv {
     margin-top: 2rem;
+}
+
+ol {
+    list-style: upper-alpha;
+}
+
+li:hover {
+    background-color: rgb(100, 237, 173);
 }
