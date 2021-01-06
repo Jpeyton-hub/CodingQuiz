@@ -5,7 +5,10 @@ const answerC = document.getElementById('answer3');
 const answerD = document.getElementById('answer4');
 const ansList = document.getElementById('ansDivList')
 let timeScore = 11;
-let timer = document.getElementById('timer')
+let timer = document.getElementById('timer');
+let timerInterval;
+const rightAns = document.querySelector('.right');
+const wrongAns = document.querySelector('.wrong');
 
 function addGlobalEventListner(type, selector, callback) {
     document.addEventListener(type, e => {
@@ -23,6 +26,11 @@ function questionChange1() {
     answerC.innerHTML = "answer";
     answerD.setAttribute("class", "d2");
     answerD.innerHTML = "'answer'";
+    addGlobalEventListner("click", ".a2", questionChange2);
+    addGlobalEventListner("click", ".b2", questionChange2);
+    addGlobalEventListner("click", ".a2", correctAnswer);
+    addGlobalEventListner("click", ".c2", questionChange2);
+    addGlobalEventListner("click", ".d2", questionChange2);
 };
 
 function questionChange2() {
@@ -35,6 +43,11 @@ function questionChange2() {
     answerC.innerHTML = "const";
     answerD.setAttribute("class", "d3 right");
     answerD.innerHTML = "all of the above";
+    addGlobalEventListner("click", ".a3", questionChange3);
+    addGlobalEventListner("click", ".b3", questionChange3);
+    addGlobalEventListner("click", ".d3", correctAnswer);
+    addGlobalEventListner("click", ".c3", questionChange3);
+    addGlobalEventListner("click", ".d3", questionChange3);
 };
 
 function questionChange3() {
@@ -47,24 +60,31 @@ function questionChange3() {
     answerC.innerHTML = "array";
     answerD.setAttribute("class", "d4 wrong");
     answerD.innerHTML = "string";
+    addGlobalEventListner("click", ".a4", printScore);
+    addGlobalEventListner("click", ".b4", printScore);
+    addGlobalEventListner("click", ".c4", correctAnswer);
+    addGlobalEventListner("click", ".c4", printScore);
+    addGlobalEventListner("click", ".d4", printScore);
 };
 
-function printScore() {
-    let userInit = prompt("Enter your initials")
-    question.innerHTML = "Scoreboard";
-    ansList.innerHTML = "";
-    localStorage.setItem(userInit, timeScore);
-    for (const key in localStorage) {
-        ansList.prepend(`<div>${key}: ${localStorage.getItem(key)}</div>`) 
-    };
-}
+// function printScore() {
+//     clearInterval(timerInterval);
+    
+//     question.innerHTML = "Scoreboard";
+//     ansList.innerHTML = "";
+//     localStorage.setItem(userInit, timeScore);
+//     for (let i = 0; i < localStorage.length; i++) {
+//         const key = localStorage.key(i);
+//         ansList.prepend(`${key}: ${localStorage.getItem(key)}` + '<br>'); 
+//     };
+// }
 
 function correctAnswer() {
-    timeScore += 2;
+    timeScore += 3;
 };
 
 function incorrectAnswer() {
-    timeScore -= 2;
+    timeScore -= 3;
 };
 
 function setTime() {
@@ -72,20 +92,19 @@ function setTime() {
       timeScore--;
       timer.innerHTML = timeScore;
   
-      if(secondsLeft === 0) {
+      if(timeScore === 0) {
         clearInterval(timerInterval);
-        sendMessage("Time's Up!!");
-        printScore();
+        // printScore;
       }
   
     }, 1000);
   };
 
-  setTime
+setTime()
 //correct and incorrect listeners
 
-addGlobalEventListner('click', 'right', correctAnswer);
-addGlobalEventListner('click', 'wrong', incorrectAnswer);
+addGlobalEventListner('click', '.right', correctAnswer);
+addGlobalEventListner('click', '.wrong', incorrectAnswer);
 
 //first set of answer listeners
 
@@ -95,26 +114,12 @@ addGlobalEventListner("click", ".b1", correctAnswer);
 addGlobalEventListner("click", ".c1", questionChange1);
 addGlobalEventListner("click", ".d1", questionChange1);
 
-//second set of answer listeners
 
-addGlobalEventListner("click", ".a2", questionChange2);
-addGlobalEventListner("click", ".b2", questionChange2);
-addGlobalEventListner("click", ".a2", correctAnswer);
-addGlobalEventListner("click", ".c2", questionChange2);
-addGlobalEventListner("click", ".d2", questionChange2);
 
-//third set of answer listeners
 
-addGlobalEventListner("click", ".a3", questionChange3);
-addGlobalEventListner("click", ".b3", questionChange3);
-addGlobalEventListner("click", ".d3", correctAnswer);
-addGlobalEventListner("click", ".c3", questionChange3);
-addGlobalEventListner("click", ".d3", questionChange3);
 
-//fourth set of answer listeners
 
-addGlobalEventListner("click", ".a4", printScore);
-addGlobalEventListner("click", ".b4", printScore);
-addGlobalEventListner("click", ".c4", correctAnswer);
-addGlobalEventListner("click", ".c4", printScore);
-addGlobalEventListner("click", ".d4", printScore);
+
+
+
+
