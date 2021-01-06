@@ -67,17 +67,19 @@ function questionChange3() {
     addGlobalEventListner("click", ".d4", printScore);
 };
 
-// function printScore() {
-//     clearInterval(timerInterval);
-    
-//     question.innerHTML = "Scoreboard";
-//     ansList.innerHTML = "";
-//     localStorage.setItem(userInit, timeScore);
-//     for (let i = 0; i < localStorage.length; i++) {
-//         const key = localStorage.key(i);
-//         ansList.prepend(`${key}: ${localStorage.getItem(key)}` + '<br>'); 
-//     };
-// }
+function printScore() {    
+    let userInit = prompt('Enter your initials!');
+    clearInterval(timerInterval);
+    question.innerHTML = "Scoreboard";
+    ansList.innerHTML = "";
+    localStorage.setItem(userInit, timeScore);
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        const newScore = document.createElement('div')
+        newScore.innerHTML = `${key}: ${localStorage.getItem(key)}`
+        ansList.insertBefore(newScore, ansList.childNodes[0]); 
+    };
+}
 
 function correctAnswer() {
     timeScore += 3;
@@ -94,7 +96,7 @@ function setTime() {
   
       if(timeScore === 0) {
         clearInterval(timerInterval);
-        // printScore;
+        printScore();
       }
   
     }, 1000);
