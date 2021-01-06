@@ -1,3 +1,5 @@
+alert('Click ok to start the quiz!');
+
 const question = document.getElementById('question')
 const answerA = document.getElementById('answer1');
 const answerB = document.getElementById('answer2');
@@ -68,8 +70,8 @@ function questionChange3() {
 };
 
 function printScore() {    
+    clearInterval(window.timerInterval);
     let userInit = prompt('Enter your initials!');
-    clearInterval(timerInterval);
     question.innerHTML = "Scoreboard";
     ansList.innerHTML = "";
     localStorage.setItem(userInit, timeScore);
@@ -90,12 +92,12 @@ function incorrectAnswer() {
 };
 
 function setTime() {
-    var timerInterval = setInterval(function() {
+    window.timerInterval = setInterval(function() {
       timeScore--;
       timer.innerHTML = timeScore;
   
       if(timeScore === 0) {
-        clearInterval(timerInterval);
+        clearInterval(window.timerInterval);
         printScore();
       }
   
