@@ -27,6 +27,10 @@ ol {
     list-style: upper-alpha;
 }
 
+a {
+    color: black;
+}
+
 a:hover {
     background-color: rgb(100, 237, 173);
 }
