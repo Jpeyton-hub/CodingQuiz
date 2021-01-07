@@ -27,6 +27,6 @@ ol {
     list-style: upper-alpha;
 }
 
-li:hover {
+a:hover {
     background-color: rgb(100, 237, 173);
 }

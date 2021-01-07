@@ -1,11 +1,10 @@
 alert('Click ok to start the quiz!');
-
-const question = document.getElementById('question')
+const question = document.getElementById('question');
 const answerA = document.getElementById('answer1');
 const answerB = document.getElementById('answer2');
 const answerC = document.getElementById('answer3');
 const answerD = document.getElementById('answer4');
-const ansList = document.getElementById('ansDivList')
+const ansList = document.getElementById('ansDivList');
 let timeScore = 11;
 let timer = document.getElementById('timer');
 let timerInterval;
@@ -74,12 +73,19 @@ function printScore() {
     let userInit = prompt('Enter your initials!');
     question.innerHTML = "Scoreboard";
     ansList.innerHTML = "";
-    localStorage.setItem(userInit, timeScore);
-    for (let i = 0; i < localStorage.length; i++) {
-        const key = localStorage.key(i);
+    if (localStorage.getItem('scoreArr') == null) {
+        let scoreArr = [];
+        scoreArr.unshift('' + userInit + ': ' + timeScore);
+        localStorage.setItem('scoreArr', JSON.stringify(scoreArr));
+    } else {
+        let newScore = JSON.parse(localStorage.getItem('scoreArr'));
+        newScore.unshift('' + userInit + ': ' + timeScore);
+        localStorage.setItem('scoreArr', JSON.stringify(newScore));
+    };
+    for (let i = 0; i < JSON.parse(localStorage.getItem('scoreArr')).length; i++) {
         const newScore = document.createElement('div')
-        newScore.innerHTML = `${key}: ${localStorage.getItem(key)}`
-        ansList.insertBefore(newScore, ansList.childNodes[0]); 
+        newScore.innerHTML = JSON.parse(localStorage.getItem('scoreArr'))[i];
+        ansList.append(newScore); 
     };
 }
 
